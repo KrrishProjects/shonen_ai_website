@@ -24,6 +24,8 @@
         <a href="#download">Download</a>
         <a href="#privacy">Privacy</a>
         <a href="#contact">Contact</a>
+        <a href="#feedback">Feedback</a>
+        <a href="#changelog">Changelog</a>
       </div>
     </nav>
 
@@ -275,6 +277,90 @@
       <p>Developer: <strong>Krish Nautiyal</strong></p>
       <p>Email: <a href="mailto:krishsprojects@gmail.com">krishsprojects@gmail.com</a></p>
     </section>
+    <section id="feedback" class="section feedback">
+      <div class="section-title">
+        <p>Feedback</p>
+        <h2>Help improve Shonen AI</h2>
+      </div>
+
+      <div class="feedback-box">
+        <p>
+          Found a bug, have a feature idea, or want to share your experience?
+          Send feedback directly to the developer.
+        </p>
+
+        <form class="feedback-form" onsubmit="sendFeedback(event)">
+          <label>
+            Your Name
+            <input type="text" id="feedbackName" placeholder="Enter your name" />
+          </label>
+
+          <label>
+            Feedback Type
+            <select id="feedbackType">
+              <option value="General Feedback">General Feedback</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="Feature Request">Feature Request</option>
+              <option value="Payment Issue">Payment Issue</option>
+              <option value="APK Download Issue">APK Download Issue</option>
+            </select>
+          </label>
+
+          <label>
+            Your Message
+            <textarea id="feedbackMessage" rows="6" placeholder="Write your feedback here..." required></textarea>
+          </label>
+
+          <button class="btn primary" type="submit">Send Feedback</button>
+        </form>
+
+        <p class="small-note">
+          This opens your email app with the feedback message filled in.
+        </p>
+      </div>
+    </section>
+
+    <section id="changelog" class="section changelog">
+      <div class="section-title">
+        <p>Changelog</p>
+        <h2>Latest Shonen AI updates</h2>
+      </div>
+
+      <div class="changelog-list">
+        <div class="changelog-card latest">
+          <div class="version-badge">Latest</div>
+          <h3>Shonen AI v1.0.1</h3>
+          <p class="release-date">Release build 2</p>
+          <ul>
+            <li>Added in-app update checker</li>
+            <li>Added Update Available dialog with Download, Website, and Later options</li>
+            <li>Added Feedback & Support inside the app</li>
+            <li>Added feedback type selection for bug reports, feature requests, payment issues, and update issues</li>
+            <li>Added Official Website link inside Settings</li>
+            <li>Added Download Latest APK button inside Settings</li>
+            <li>Added Contact Developer option</li>
+            <li>Added backend AI fallback router with Gemini and Groq fallback tested</li>
+            <li>Improved release readiness and app stability</li>
+          </ul>
+        </div>
+
+        <div class="changelog-card">
+          <h3>Shonen AI v1.0.0</h3>
+          <p class="release-date">Initial APK release</p>
+          <ul>
+            <li>AI Chat with secure backend</li>
+            <li>Google login and Firestore cloud sync</li>
+            <li>Tools Hub with student, creator, business, and career tools</li>
+            <li>PDF Tools for summaries, notes, quizzes, flashcards, and explanations</li>
+            <li>Voice Mode with AI voice replies</li>
+            <li>Profile Memory personalization</li>
+            <li>Usage limits and premium-ready foundation</li>
+            <li>Razorpay web payment link flow</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
