@@ -3,369 +3,360 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shonen AI - Study Smarter, Create Faster, Grow Better</title>
-  <meta name="description" content="Shonen AI is a personal AI productivity app for Indian students, creators, small businesses, and career users." />
+
+  <title>Shonen AI — Your AI Productivity Partner</title>
+  <meta name="description" content="Shonen AI is an AI productivity app for students, creators, businesses, and career users. AI Chat, Tools Hub, PDF Tools, Voice Mode, Image Understanding, Profile Memory, and more." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Instrument Serif', 'serif'],
+            body: ['Barlow', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <header class="header">
+  <main>
+    <!-- NAVBAR -->
     <nav class="nav">
-      <div class="brand">
-        <div class="logo">S</div>
-        <div>
-          <h1>Shonen AI</h1>
-          <p>Developed by Krish Nautiyal</p>
-        </div>
-      </div>
+      <a href="#home" class="brand">
+        <span class="brand-logo">
+          <img src="assets/shonen-logo.png" alt="Shonen AI Logo">
+        </span>
+        <span>Shonen AI</span>
+      </a>
 
       <div class="nav-links">
         <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#download">Download</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#contact">Contact</a>
-        <a href="#feedback">Feedback</a>
-        <a href="#changelog">Changelog</a>
+        <a href="#tools">Tools Hub</a>
+        <a href="#pdf">PDF Tools</a>
+        <a href="#premium">Premium</a>
+        <a href="#launch">Launch</a>
       </div>
+
+      <a class="nav-cta" href="https://github.com/KrrishProjects/shonen_ai_website/releases/download/v1.0.1/ShonenAI-v1.0.1.apk">
+        Download APK
+        <span>↗</span>
+      </a>
     </nav>
 
-    <section class="hero">
+    <!-- HERO -->
+    <section id="home" class="hero section">
+      <video class="bg-video hero-video" autoplay muted playsinline preload="auto">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4" type="video/mp4">
+      </video>
+
       <div class="hero-content">
-        <div class="badge">AI Productivity App for Students, Creators & Businesses</div>
-        <h2>Study smarter, create faster, grow better.</h2>
+        <div class="pill">
+          <span>New</span>
+          Final public version launching on 10 June 2026
+        </div>
+
+        <img class="hero-logo" src="assets/shonen-logo.png" alt="Shonen AI">
+
+        <h1>
+          Your AI productivity partner for
+          <em>study, create, work and growth</em>
+        </h1>
+
         <p>
-          Shonen AI is your personal AI assistant for chat, study tools, PDF tools,
-          voice mode, creator content, business messages, and career growth.
+          Shonen AI brings AI Chat, Tools Hub, PDF Tools, Voice Mode, Image Understanding,
+          Profile Memory, Cloud Sync, and premium-ready productivity features into one simple Android APK.
         </p>
 
-        <div class="hero-buttons">
-          <a class="btn primary" href="#download">Download APK</a>
-          <a class="btn secondary" href="#features">Explore Features</a>
+        <div class="hero-actions">
+          <a class="primary-btn" href="https://github.com/KrrishProjects/shonen_ai_website/releases/download/v1.0.1/ShonenAI-v1.0.1.apk">
+            Download APK
+            <span>↗</span>
+          </a>
+
+          <a class="secondary-btn" href="#features">
+            Explore Features
+            <span>▶</span>
+          </a>
         </div>
 
         <div class="stats">
-          <div>
+          <div class="stat-card">
             <strong>25+</strong>
-            <span>AI Tools</span>
+            <span>AI productivity tools</span>
           </div>
-          <div>
-            <strong>PDF</strong>
-            <span>Smart Tools</span>
+
+          <div class="stat-card">
+            <strong>1 App</strong>
+            <span>Study, create, work, grow</span>
           </div>
-          <div>
-            <strong>Voice</strong>
-            <span>Assistant Mode</span>
+
+          <div class="stat-card">
+            <strong>v1.0.1</strong>
+            <span>APK release available</span>
           </div>
         </div>
       </div>
 
-      <div class="phone-card">
-        <div class="phone-top"></div>
-        <div class="chat-card user">Make me a study plan for exams.</div>
-        <div class="chat-card ai">
-          Sure. I’ll create a simple daily plan with revision, practice, and breaks.
-        </div>
-        <div class="tool-grid">
-          <span>Study Planner</span>
-          <span>PDF Notes</span>
-          <span>Captions</span>
-          <span>Resume Help</span>
-        </div>
+      <div class="hero-bottom">
+        <span>Built with</span>
+        <b>Flutter</b>
+        <b>Firebase</b>
+        <b>Render</b>
+        <b>GitHub</b>
+        <b>Razorpay</b>
       </div>
     </section>
-  </header>
 
-  <main>
-    <section id="features" class="section">
-      <div class="section-title">
-        <p>Features</p>
-        <h2>More than a normal chatbot</h2>
+    <!-- FEATURES -->
+    <section id="features" class="section capabilities">
+      <video class="bg-video" autoplay muted playsinline preload="auto">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4" type="video/mp4">
+      </video>
+
+      <div class="section-head">
+        <span>// Capabilities</span>
+        <h2>What Shonen AI can do</h2>
+        <p>
+          One AI app built for students, creators, small businesses, and career users.
+        </p>
       </div>
 
-      <div class="cards">
-        <div class="card">
+      <div class="feature-grid">
+        <article class="glass-card">
+          <div class="icon">💬</div>
           <h3>AI Chat</h3>
-          <p>Ask questions, continue conversations, format code, and get practical answers.</p>
-        </div>
-        <div class="card">
-          <h3>AI Tools Hub</h3>
-          <p>25+ tools for students, creators, small businesses, and career users.</p>
-        </div>
-        <div class="card">
+          <p>Ask questions, continue conversations, get smart answers, and use Shonen AI like your personal assistant.</p>
+          <div class="tags">
+            <span>Chat</span><span>Context</span><span>Smart replies</span>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <div class="icon">🛠️</div>
+          <h3>Tools Hub</h3>
+          <p>Access tools for study, content creation, business writing, career growth, planning, and daily productivity.</p>
+          <div class="tags">
+            <span>Student</span><span>Creator</span><span>Business</span><span>Career</span>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <div class="icon">📄</div>
           <h3>PDF Tools</h3>
-          <p>Summarize PDFs, make notes, quizzes, flashcards, and important questions.</p>
-        </div>
-        <div class="card">
+          <p>Turn PDFs into summaries, notes, quizzes, flashcards, important questions, and simple explanations.</p>
+          <div class="tags">
+            <span>Summary</span><span>Notes</span><span>Quiz</span><span>Flashcards</span>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <div class="icon">🎙️</div>
           <h3>Voice Mode</h3>
-          <p>Talk to Shonen AI using voice and get AI voice replies.</p>
-        </div>
-        <div class="card">
+          <p>Talk with Shonen AI using voice input and get AI voice replies for a faster hands-free experience.</p>
+          <div class="tags">
+            <span>Voice input</span><span>Voice reply</span>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <div class="icon">🖼️</div>
+          <h3>Image Understanding</h3>
+          <p>Upload an image and ask Shonen AI to understand, explain, or analyze it.</p>
+          <div class="tags">
+            <span>Analyze</span><span>Explain</span><span>Image AI</span>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <div class="icon">🧠</div>
           <h3>Profile Memory</h3>
-          <p>Personalize outputs based on your study, creator, business, and career profile.</p>
+          <p>Save preferences and profile details so Shonen AI gives more personalized answers over time.</p>
+          <div class="tags">
+            <span>Personalized</span><span>Memory</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOOLS HUB -->
+    <section id="tools" class="section dark-section">
+      <div class="section-head">
+        <span>// Tools Hub</span>
+        <h2>One app. Many smart tools.</h2>
+        <p>
+          Tools Hub is designed for real users with real goals.
+        </p>
+      </div>
+
+      <div class="tool-grid">
+        <article class="tool-card">
+          <h3>For Students</h3>
+          <ul>
+            <li>Study Planner</li>
+            <li>Notes Maker</li>
+            <li>Quiz Generator</li>
+            <li>Exam Revision Plan</li>
+            <li>Flashcards Maker</li>
+            <li>Explain Like I’m 10</li>
+            <li>Important Questions Generator</li>
+          </ul>
+        </article>
+
+        <article class="tool-card">
+          <h3>For Creators</h3>
+          <ul>
+            <li>Instagram Caption Writer</li>
+            <li>Reel Script Writer</li>
+            <li>Hook Generator</li>
+            <li>Hashtag Generator</li>
+            <li>Bio Generator</li>
+            <li>YouTube Script Writer</li>
+            <li>Video Idea Generator</li>
+          </ul>
+        </article>
+
+        <article class="tool-card">
+          <h3>For Businesses</h3>
+          <ul>
+            <li>WhatsApp Promotion Message</li>
+            <li>Customer Reply Writer</li>
+            <li>Festival Offer Generator</li>
+            <li>Product Description Writer</li>
+            <li>Lead Follow-up Message</li>
+          </ul>
+        </article>
+
+        <article class="tool-card">
+          <h3>For Career Users</h3>
+          <ul>
+            <li>Resume Summary Writer</li>
+            <li>Job Interview Prep</li>
+            <li>LinkedIn Bio Writer</li>
+            <li>Cover Letter Writer</li>
+            <li>Skill Roadmap</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PDF TOOLS -->
+    <section id="pdf" class="section pdf-section">
+      <div class="pdf-copy">
+        <span>// PDF Tools</span>
+        <h2>Turn one PDF into everything you need</h2>
+        <p>
+          Shonen AI PDF Tools help students understand faster, revise better,
+          and convert long PDFs into smart study outputs.
+        </p>
+
+        <div class="pdf-list">
+          <div><b>PDF Summarizer</b><span>Create clear summaries with key points.</span></div>
+          <div><b>PDF Notes Maker</b><span>Turn PDFs into clean study notes.</span></div>
+          <div><b>PDF Quiz Generator</b><span>Generate practice questions and answers.</span></div>
+          <div><b>PDF Important Questions</b><span>Find exam-focused likely questions.</span></div>
+          <div><b>PDF Flashcards</b><span>Create flashcards for quick revision.</span></div>
+          <div><b>PDF Explain Simply</b><span>Understand topics in beginner-friendly language.</span></div>
         </div>
-        <div class="card">
-          <h3>Secure Backend</h3>
-          <p>Gemini and provider keys are protected through a secure Render backend.</p>
+      </div>
+
+      <div class="phone-mock">
+        <div class="phone-screen">
+          <div class="phone-top">PDF Tools</div>
+          <div class="phone-banner">Personalized PDF outputs enabled</div>
+          <button>Select PDF</button>
+          <div class="phone-empty">No PDF selected<br><small>Select a PDF to begin</small></div>
+          <h4>Choose PDF Tool</h4>
+          <div class="phone-item active">PDF Summarizer <small>Create a clear summary with key points.</small></div>
+          <div class="phone-item">PDF Notes Maker <small>Turn the PDF into study notes.</small></div>
+          <div class="phone-item">PDF Quiz Generator <small>Generate practice questions and answers.</small></div>
+          <div class="phone-item">PDF Important Questions <small>Find exam-focused important questions.</small></div>
+          <div class="phone-item">PDF Flashcards <small>Create flashcards for revision.</small></div>
         </div>
       </div>
     </section>
 
-    <section id="pricing" class="section pricing-section">
-      <div class="section-title">
-        <p>Pricing</p>
-        <h2>Start free. Upgrade when you need more.</h2>
+    <!-- PREMIUM -->
+    <section id="premium" class="section dark-section">
+      <div class="section-head">
+        <span>// Premium Ready</span>
+        <h2>Free now. Premium system ready.</h2>
+        <p>
+          Shonen AI already includes usage limits, premium flow, update checker,
+          feedback support, and admin controls for future paid access.
+        </p>
       </div>
 
-      <div class="pricing">
-        <div class="price-card">
-          <h3>Free</h3>
-          <div class="price">₹0</div>
-          <ul>
-            <li>20 chats/day</li>
-            <li>10 tools/day</li>
-            <li>3 PDF uses/day</li>
-            <li>5 voice uses/day</li>
-            <li>5 image uses/day</li>
-          </ul>
+      <div class="premium-grid">
+        <div class="glass-card">
+          <h3>Free Plan</h3>
+          <p>Use Shonen AI with daily limits and access the core app experience.</p>
         </div>
 
-        <div class="price-card premium">
-          <div class="popular">Popular</div>
+        <div class="glass-card premium-card">
           <h3>Premium</h3>
-          <div class="price">₹99<span>/month</span></div>
-          <ul>
-            <li>300 chats/day</li>
-            <li>100 tools/day</li>
-            <li>50 PDF uses/day</li>
-            <li>50 voice uses/day</li>
-            <li>50 image uses/day</li>
-          </ul>
-          <a class="btn primary full" href="#download">Get Shonen AI</a>
+          <p>Higher usage, premium tools, and expanded AI access planned for launch.</p>
+        </div>
+
+        <div class="glass-card">
+          <h3>Admin Controlled</h3>
+          <p>Backend admin panel supports version dashboard, users overview, and premium overview.</p>
         </div>
       </div>
     </section>
 
-    <section id="download" class="section download">
-      <div class="download-box">
-        <h2>Download Shonen AI APK</h2>
+    <!-- LAUNCH -->
+    <section id="launch" class="section launch-section">
+      <div class="section-head">
+        <span>// Launch</span>
+        <h2>Final public version launching on 10 June 2026</h2>
         <p>
-          Shonen AI is currently available as an Android APK. Play Store release is planned later.
-        </p>
-
-        <a class="btn primary large" href="https://github.com/KrrishProjects/shonen_ai_website/releases/download/v1.0.0/ShonenAI.apk">Download APK</a>
-
-        <p class="small-note">
-          Download the latest Shonen AI Android APK from the official GitHub Release. If Android blocks install, allow installation from your browser or file manager.
+          Shonen AI is under development and improving every stage before public launch.
         </p>
       </div>
-    </section>
 
-    <section class="section faq">
-      <div class="section-title">
-        <p>FAQ</p>
-        <h2>Common questions</h2>
+      <div class="launch-grid">
+        <a href="https://krrishprojects.github.io/shonen_ai_website/">Official Website</a>
+        <a href="https://github.com/KrrishProjects/shonen_ai_website/releases">GitHub Releases</a>
+        <a href="#">Aptoide Launch</a>
+        <a href="#">Amazon Appstore Launch</a>
       </div>
 
-      <div class="faq-list">
-        <details>
-          <summary>Is Shonen AI free?</summary>
-          <p>Yes, Shonen AI has a free plan with daily limits. Premium gives higher daily usage.</p>
-        </details>
-
-        <details>
-          <summary>Is my API key inside the APK?</summary>
-          <p>No. AI provider keys and payment secrets stay only on the secure backend.</p>
-        </details>
-
-        <details>
-          <summary>Who is Shonen AI for?</summary>
-          <p>Students, creators, small business owners, and career users.</p>
-        </details>
-
-        <details>
-          <summary>Is Shonen AI on Play Store?</summary>
-          <p>Not yet. APK distribution is currently planned through website and other platforms.</p>
-        </details>
-      </div>
-    </section>
-
-    <section id="privacy" class="section legal">
-      <div class="section-title">
-        <p>Privacy</p>
-        <h2>Privacy & Security</h2>
-      </div>
-
-      <p>
-        Shonen AI is designed with privacy and security in mind. The app uses Firebase Authentication
-        for Google sign-in and Firestore for saving user-specific data such as chats, profile memory,
-        usage limits, and app preferences.
-      </p>
-
-      <p>
-        Your AI requests are sent through a secure backend hosted on Render. Sensitive keys such as
-        Gemini API keys, fallback AI provider keys, Razorpay Key Secret, and payment secrets are never
-        stored inside the Android APK.
-      </p>
-
-      <p>
-        Shonen AI may store chat history and profile memory only to provide a better personalized
-        experience across sessions and devices. Profile Memory is used to improve study, creator,
-        business, and career-related outputs.
-      </p>
-
-      <p>
-        Users can sign out, clear chats, delete profile memory, and manage app data from inside the app.
-        More detailed data deletion options will be added as Shonen AI moves closer to public launch.
-      </p>
-
-      <p>
-        Payment processing is handled through Razorpay. Shonen AI does not store card numbers, UPI PINs,
-        bank passwords, or sensitive payment credentials.
-      </p>
-
-      <p>
-        AI responses may be processed by trusted AI providers through the backend. Shonen AI uses provider
-        fallback only to improve reliability and reduce downtime. User-facing secrets are not exposed.
-      </p>
-    </section>
-
-    <section class="section legal">
-      <div class="section-title">
-        <p>Terms</p>
-        <h2>Terms of Use</h2>
-      </div>
-
-      <p>
-        Shonen AI is an AI productivity assistant created for students, creators, small businesses,
-        and career users. By using the app, you agree to use it responsibly and only for lawful purposes.
-      </p>
-
-      <p>
-        AI-generated answers can be helpful, but they may not always be accurate, complete, or up to date.
-        Users should verify important information before using it for exams, business decisions, legal,
-        financial, medical, or career-critical situations.
-      </p>
-
-      <p>
-        Free and Premium plans include daily usage limits. These limits may change as the app improves,
-        grows, and moves toward public launch.
-      </p>
-
-      <p>
-        Premium pricing is currently planned at ₹99/month. Razorpay payment flow is being tested before
-        full live payment launch. Real paid access will depend on Razorpay live account activation and
-        production readiness.
-      </p>
-
-      <p>
-        Users must not misuse Shonen AI for spam, fraud, harmful content, illegal activity, or attempts
-        to abuse AI provider limits. Access may be limited or blocked if misuse is detected.
-      </p>
-
-      <p>
-        Shonen AI is still under active development. Features, limits, pricing, availability, and policies
-        may be updated over time.
-      </p>
-    </section>
-
-    <section id="contact" class="section contact">
-      <div class="section-title">
-        <p>Contact</p>
-        <h2>Contact Developer</h2>
-      </div>
-
-      <p>Developer: <strong>Krish Nautiyal</strong></p>
-      <p>Email: <a href="mailto:krishsprojects@gmail.com">krishsprojects@gmail.com</a></p>
-    </section>
-    <section id="feedback" class="section feedback">
-      <div class="section-title">
-        <p>Feedback</p>
-        <h2>Help improve Shonen AI</h2>
-      </div>
-
-      <div class="feedback-box">
+      <div class="support-box">
+        <h3>Feedback & Support</h3>
         <p>
-          Found a bug, have a feature idea, or want to share your experience?
-          Send feedback directly to the developer.
+          Found a bug, payment issue, APK issue, or feature idea?
+          Contact the developer and help improve Shonen AI.
         </p>
-
-        <form class="feedback-form" onsubmit="sendFeedback(event)">
-          <label>
-            Your Name
-            <input type="text" id="feedbackName" placeholder="Enter your name" />
-          </label>
-
-          <label>
-            Feedback Type
-            <select id="feedbackType">
-              <option value="General Feedback">General Feedback</option>
-              <option value="Bug Report">Bug Report</option>
-              <option value="Feature Request">Feature Request</option>
-              <option value="Payment Issue">Payment Issue</option>
-              <option value="APK Download Issue">APK Download Issue</option>
-            </select>
-          </label>
-
-          <label>
-            Your Message
-            <textarea id="feedbackMessage" rows="6" placeholder="Write your feedback here..." required></textarea>
-          </label>
-
-          <button class="btn primary" type="submit">Send Feedback</button>
-        </form>
-
-        <p class="small-note">
-          This opens your email app with the feedback message filled in.
-        </p>
+        <a href="mailto:krishsprojects@gmail.com?subject=Shonen AI Feedback">Contact Developer</a>
       </div>
     </section>
 
-    <section id="changelog" class="section changelog">
-      <div class="section-title">
-        <p>Changelog</p>
-        <h2>Latest Shonen AI updates</h2>
+    <!-- FOOTER -->
+    <footer>
+      <img src="assets/shonen-logo.png" alt="Shonen AI">
+      <h2>Shonen AI</h2>
+      <p>Study smarter. Create faster. Grow better.</p>
+
+      <div class="footer-links">
+        <a href="https://github.com/KrrishProjects/shonen_ai_website">GitHub</a>
+        <a href="https://github.com/KrrishProjects/shonen_ai_website/releases">APK Releases</a>
+        <a href="mailto:krishsprojects@gmail.com">Support</a>
       </div>
 
-      <div class="changelog-list">
-        <div class="changelog-card latest">
-          <div class="version-badge">Latest</div>
-          <h3>Shonen AI v1.0.1</h3>
-          <p class="release-date">Release build 2</p>
-          <ul>
-            <li>Added in-app update checker</li>
-            <li>Added Update Available dialog with Download, Website, and Later options</li>
-            <li>Added Feedback & Support inside the app</li>
-            <li>Added feedback type selection for bug reports, feature requests, payment issues, and update issues</li>
-            <li>Added Official Website link inside Settings</li>
-            <li>Added Download Latest APK button inside Settings</li>
-            <li>Added Contact Developer option</li>
-            <li>Added backend AI fallback router with Gemini and Groq fallback tested</li>
-            <li>Improved release readiness and app stability</li>
-          </ul>
-        </div>
-
-        <div class="changelog-card">
-          <h3>Shonen AI v1.0.0</h3>
-          <p class="release-date">Initial APK release</p>
-          <ul>
-            <li>AI Chat with secure backend</li>
-            <li>Google login and Firestore cloud sync</li>
-            <li>Tools Hub with student, creator, business, and career tools</li>
-            <li>PDF Tools for summaries, notes, quizzes, flashcards, and explanations</li>
-            <li>Voice Mode with AI voice replies</li>
-            <li>Profile Memory personalization</li>
-            <li>Usage limits and premium-ready foundation</li>
-            <li>Razorpay web payment link flow</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
+      <small>Developed by Krish Nautiyal</small>
+    </footer>
   </main>
-
-  <footer class="footer">
-    <p>© 2026 Shonen AI. Developed by Krish Nautiyal.</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>

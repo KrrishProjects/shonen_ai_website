@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shonen AI — Study smarter. Create faster. Grow better.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Instrument Serif', 'serif'],
+            body: ['Barlow', 'sans-serif'],
+          },
+          borderRadius: {
+            DEFAULT: "9999px",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .liquid-glass {
+      background: rgba(255,255,255,0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.45) 0%,
+        rgba(255,255,255,0.15) 20%,
+        rgba(255,255,255,0) 40%,
+        rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.15) 80%,
+        rgba(255,255,255,0.45) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .liquid-glass-strong {
+      background: rgba(255,255,255,0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border: none;
+      box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass-strong::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.5) 0%,
+        rgba(255,255,255,0.2) 20%,
+        rgba(255,255,255,0) 40%,
+        rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.2) 80%,
+        rgba(255,255,255,0.5) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .safe-area {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .noise {
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(59,130,246,.16), transparent 24%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.08), transparent 18%),
+        radial-gradient(circle at 50% 80%, rgba(96,165,250,.10), transparent 28%);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/framer-motion@10.18.0/dist/framer-motion.js"></script>
+  <script>
+    window.Motion = window.FramerMotion || window.motion || null;
+  </script>
+
+  <script type="text/babel">
+    const { useEffect, useRef, useState } = React;
+    const motion = window.Motion?.motion || {
+      div: (props) => React.createElement("div", props, props.children),
+      p: (props) => React.createElement("p", props, props.children),
+      span: (props) => React.createElement("span", props, props.children),
+      header: (props) => React.createElement("header", props, props.children),
+    };
+
+    const HERO_VIDEO =
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4";
+
+    const CAPABILITIES_VIDEO =
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4";
+
+    function ArrowUpRight({ className = "h-5 w-5" }) {
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M7 17L17 7" />
+          <path d="M7 7h10v10" />
+        </svg>
+      );
+    }
+
+    function PlayIcon({ className = "h-4 w-4" }) {
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 4l14 8-14 8V4Z" />
+        </svg>
+      );
+    }
+
+    function ClockIcon() {
+      return (
+        <svg className="h-7 w-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" strokeLinecap="round" />
+        </svg>
+      );
+    }
+
+    function GlobeIcon() {
+      return (
+        <svg className="h-7 w-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18" />
+          <path d="M12 3c3 3 3 15 0 18" />
+          <path d="M12 3c-3 3-3 15 0 18" />
+        </svg>
+      );
+    }
+
+    function MaterialIcon({ path }) {
+      return (
+        <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <path d={path} />
+        </svg>
+      );
+    }
+
+    function FadingVideo({ src, className = "", style = {} }) {
+      const videoRef = useRef(null);
+      const rafRef = useRef(null);
+      const fadingOutRef = useRef(false);
+      const timeoutRef = useRef(null);
+
+      useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const FADE_MS = 500;
+        const FADE_OUT_LEAD = 0.55;
+
+        function fadeTo(target, duration = FADE_MS) {
+          if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+          const startOpacity = Number.parseFloat(video.style.opacity || "0") || 0;
+          const start = performance.now();
+
+          function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = startOpacity + (target - startOpacity) * eased;
+            video.style.opacity = String(value);
+
+            if (progress < 1) {
+              rafRef.current = requestAnimationFrame(step);
+            }
+          }
+
+          rafRef.current = requestAnimationFrame(step);
+        }
+
+        function onLoadedData() {
+          video.style.opacity = "0";
+          video.play().catch(() => {});
+          fadeTo(1);
+        }
+
+        function onTimeUpdate() {
+          if (!video.duration || Number.isNaN(video.duration)) return;
+
+          const remaining = video.duration - video.currentTime;
+          if (!fadingOutRef.current && remaining <= FADE_OUT_LEAD && remaining > 0) {
+            fadingOutRef.current = true;
+            fadeTo(0);
+          }
+        }
+
+        function onEnded() {
+          video.style.opacity = "0";
+          timeoutRef.current = setTimeout(() => {
+            try {
+              video.currentTime = 0;
+              fadingOutRef.current = false;
+              video.play().catch(() => {});
+              fadeTo(1);
+            } catch (e) {}
+          }, 100);
+        }
+
+        video.addEventListener("loadeddata", onLoadedData);
+        video.addEventListener("timeupdate", onTimeUpdate);
+        video.addEventListener("ended", onEnded);
+
+        if (video.readyState >= 2) onLoadedData();
+
+        return () => {
+          if (rafRef.current) cancelAnimationFrame(rafRef.current);
+          if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          video.removeEventListener("loadeddata", onLoadedData);
+          video.removeEventListener("timeupdate", onTimeUpdate);
+          video.removeEventListener("ended", onEnded);
+        };
+      }, [src]);
+
+      return (
+        <video
+          ref={videoRef}
+          src={src}
+          muted
+          autoPlay
+          playsInline
+          preload="auto"
+          className={className}
+          style={{ opacity: 0, ...style }}
+        />
+      );
+    }
+
+    function BlurText({ text, className = "" }) {
+      const ref = useRef(null);
+      const [visible, setVisible] = useState(false);
+
+      useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setVisible(true);
+              observer.disconnect();
+            }
+          },
+          { threshold: 0.1 }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+      }, []);
+
+      const words = text.split(" ");
+
+      return (
+        <p ref={ref} className={className} style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", rowGap: "0.1em" }}>
+          {words.map((word, i) => (
+            <motion.span
+              key={`${word}-${i}`}
+              style={{ display: "inline-block", marginRight: "0.28em" }}
+              initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
+              animate={visible ? {
+                filter: ["blur(10px)", "blur(5px)", "blur(0px)"],
+                opacity: [0, 0.5, 1],
+                y: [50, -5, 0],
+              } : {}}
+              transition={{
+                duration: 0.7,
+                times: [0, 0.5, 1],
+                ease: "easeOut",
+                delay: i * 0.1,
+              }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </p>
+      );
+    }
+
+    function LogoMark({ large = false }) {
+      return (
+        <div className={`${large ? "h-16 w-16" : "h-12 w-12"} liquid-glass rounded-full flex items-center justify-center`}>
+          <span className="font-heading italic text-white text-3xl leading-none">S</span>
+        </div>
+      );
+    }
+
+    function Navbar() {
+      const links = ["Home", "Tools", "PDF", "Premium", "Download"];
+
+      return (
+        <nav className="fixed left-0 right-0 top-4 z-50 px-8 lg:px-16 safe-area">
+          <div className="mx-auto flex max-w-7xl items-center justify-between">
+            <LogoMark />
+
+            <div className="hidden md:flex liquid-glass rounded-full px-1.5 py-1.5 items-center gap-1">
+              {links.map((link) => (
+                <a key={link} href={link === "Home" ? "#home" : "#capabilities"} className="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white">
+                  {link}
+                </a>
+              ))}
+
+              <a href="#capabilities" className="ml-1 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black whitespace-nowrap">
+                Explore App <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="h-12 w-12 invisible" />
+          </div>
+        </nav>
+      );
+    }
+
+    const fadeUp = {
+      initial: { filter: "blur(10px)", opacity: 0, y: 20 },
+      animate: { filter: "blur(0px)", opacity: 1, y: 0 },
+    };
+
+    function Hero() {
+      return (
+        <section id="home" className="relative min-h-screen overflow-hidden bg-black flex flex-col">
+          <FadingVideo
+            src={HERO_VIDEO}
+            className="absolute left-1/2 top-0 -translate-x-1/2 object-cover object-top z-0"
+            style={{ width: "120%", height: "120%" }}
+          />
+
+          <div className="relative z-10 flex min-h-screen flex-col">
+            <Navbar />
+
+            <main className="flex flex-1 flex-col items-center justify-center px-4 pt-24 text-center">
+              <motion.div
+                variants={fadeUp}
+                initial="initial"
+                animate="animate"
+                transition={{ delay: 0.4, ease: "easeOut", duration: 0.75 }}
+                className="liquid-glass inline-flex items-center gap-2 rounded-full px-2 py-1"
+              >
+                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-black">New</span>
+                <span className="pr-3 text-sm text-white/90 font-body">Shonen AI public version arrives 10 June 2026</span>
+              </motion.div>
+
+              <BlurText
+                text="Your AI Productivity Partner for Study Create Work and Growth"
+                className="mt-6 text-6xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.8] max-w-4xl justify-center tracking-[-4px]"
+              />
+
+              <motion.p
+                variants={fadeUp}
+                initial="initial"
+                animate="animate"
+                transition={{ delay: 0.8, ease: "easeOut", duration: 0.75 }}
+                className="mt-5 max-w-2xl text-sm md:text-base text-white font-body font-light leading-tight"
+              >
+                Shonen AI combines AI Chat, PDF Tools, Voice Mode, Profile Memory, Image Understanding, and a powerful Tools Hub inside one simple Android app.
+              </motion.p>
+
+              <motion.div
+                variants={fadeUp}
+                initial="initial"
+                animate="animate"
+                transition={{ delay: 1.1, ease: "easeOut", duration: 0.75 }}
+                className="mt-7 flex items-center gap-6"
+              >
+                <a href="#capabilities" className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium text-white inline-flex items-center gap-2">
+                  Explore Features <ArrowUpRight />
+                </a>
+
+                <a href="https://github.com/KrrishProjects/shonen_ai_website/releases" target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-white font-body">
+                  Download APK <PlayIcon />
+                </a>
+              </motion.div>
+
+              <motion.div
+                variants={fadeUp}
+                initial="initial"
+                animate="animate"
+                transition={{ delay: 1.3, ease: "easeOut", duration: 0.75 }}
+                className="mt-8 flex flex-col sm:flex-row items-stretch gap-4"
+              >
+                <div className="liquid-glass rounded-[1.25rem] p-5 w-[220px] text-left">
+                  <ClockIcon />
+                  <div className="mt-8 font-heading italic text-white text-4xl tracking-[-1px] leading-none">25+</div>
+                  <div className="mt-2 text-xs text-white font-body font-light">Smart AI Tools</div>
+                </div>
+
+                <div className="liquid-glass rounded-[1.25rem] p-5 w-[220px] text-left">
+                  <GlobeIcon />
+                  <div className="mt-8 font-heading italic text-white text-4xl tracking-[-1px] leading-none">One App</div>
+                  <div className="mt-2 text-xs text-white font-body font-light">Study, Create, Work, Grow</div>
+                </div>
+              </motion.div>
+            </main>
+
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              animate="animate"
+              transition={{ delay: 1.4, ease: "easeOut", duration: 0.75 }}
+              className="flex flex-col items-center gap-4 pb-8 px-4 text-center"
+            >
+              <div className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white">
+                Built with modern app technology and secure backend systems
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-8 md:gap-14 font-heading italic text-white text-2xl md:text-3xl tracking-tight">
+                <span>Flutter</span>
+                <span>Firebase</span>
+                <span>Render</span>
+                <span>GitHub</span>
+                <span>Razorpay</span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      );
+    }
+
+    const ICONS = {
+      tools: "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Zm1-4h12l-3.75-5-3 4L9 13l-3 4Z",
+      pdf: "M4 6.47 5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.89-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4Z",
+      voice: "M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1Zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7Z",
+    };
+
+    const cards = [
+      {
+        icon: ICONS.tools,
+        title: "Tools Hub",
+        tags: ["Students", "Creators", "Business", "Career"],
+        body: "Access built-in AI tools for study planning, content writing, business messages, resume help, captions, scripts, and everyday productivity.",
+      },
+      {
+        icon: ICONS.pdf,
+        title: "PDF Intelligence",
+        tags: ["Summaries", "Notes", "Quizzes", "Flashcards"],
+        body: "Turn PDFs into smart study outputs — summaries, notes, quizzes, important questions, flashcards, and beginner-friendly explanations.",
+      },
+      {
+        icon: ICONS.voice,
+        title: "Voice & Memory",
+        tags: ["Voice Mode", "Profile Memory", "Cloud Sync", "Google Login"],
+        body: "Talk with Shonen AI, save profile preferences, sync chats through Google login, and get more personalized help over time.",
+      },
+    ];
+
+    function CapabilityCard({ card, index }) {
+      return (
+        <motion.div
+          initial={{ filter: "blur(10px)", opacity: 0, y: 30 }}
+          whileInView={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ delay: index * 0.15, duration: 0.75, ease: "easeOut" }}
+          className="liquid-glass rounded-[1.25rem] p-6 min-h-[360px] flex flex-col"
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div className="liquid-glass rounded-[0.75rem] h-11 w-11 flex items-center justify-center shrink-0">
+              <MaterialIcon path={card.icon} />
+            </div>
+
+            <div className="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
+              {card.tags.map((tag) => (
+                <span key={tag} className="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex-1"></div>
+
+          <div className="mt-6">
+            <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">
+              {card.title}
+            </h3>
+            <p className="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">
+              {card.body}
+            </p>
+          </div>
+        </motion.div>
+      );
+    }
+
+    function Capabilities() {
+      return (
+        <section id="capabilities" className="relative min-h-screen overflow-hidden bg-black">
+          <FadingVideo
+            src={CAPABILITIES_VIDEO}
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          />
+
+          <div className="relative z-10 px-8 md:px-16 lg:px-20 pt-24 pb-10 flex flex-col min-h-screen">
+            <motion.header
+              initial={{ filter: "blur(10px)", opacity: 0, y: 20 }}
+              whileInView={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mb-auto"
+            >
+              <div className="text-sm font-body text-white/80 mb-6">// Capabilities</div>
+              <h2 className="font-heading italic text-white text-6xl md:text-7xl lg:text-[6rem] leading-[0.9] tracking-[-3px]">
+                Productivity<br />evolved
+              </h2>
+            </motion.header>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+              {cards.map((card, index) => (
+                <CapabilityCard key={card.title} card={card} index={index} />
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-white/80 text-sm font-body font-light">
+                Currently under development. Final public version launching on 10 June 2026.
+              </p>
+
+              <div className="flex items-center gap-3">
+                <a href="https://krrishprojects.github.io/shonen_ai_website/" className="liquid-glass rounded-full px-4 py-2 text-white text-sm">
+                  Website
+                </a>
+                <a href="https://github.com/KrrishProjects/shonen_ai_website/releases" className="liquid-glass-strong rounded-full px-4 py-2 text-white text-sm inline-flex items-center gap-2">
+                  GitHub Releases <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <div className="bg-black text-white">
+          <Hero />
+          <Capabilities />
+        </div>
+      );
+    }
+
+    window.FadingVideo = FadingVideo;
+    window.BlurText = BlurText;
+    window.Hero = Hero;
+    window.Capabilities = Capabilities;
+    window.App = App;
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
