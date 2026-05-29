@@ -1,0 +1,11 @@
+
+# Local backup files
+backups/
+*_backup.html
+*_backup.css
+*_backup.js
+*_backup.txt
+*_backup.xml
+index_before_*_backup.html
+robots_before_*_backup.txt
+sitemap_before_*_backup.xml
