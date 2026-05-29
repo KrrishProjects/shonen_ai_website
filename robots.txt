@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://krrishprojects.github.io/shonen_ai_website/sitemap.xml
